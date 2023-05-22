@@ -1,39 +1,28 @@
 public class Main {
-    // Check if a string is a palindrome using two pointers
-    static boolean isPalindrome(String str) {
-        int i = 0, j = str.length() - 1;
-        
-        // Iterate until the two pointers meet
-        while (i < j) {
-            // Compare characters at the current pointers
-            if (str.charAt(i) != str.charAt(j))
-                return false; // Characters don't match, not a palindrome
-            
-            // Move the pointers towards the center
-            i++;
-            j--;
+    
+    // Checks if an integer is a palindrome
+    static boolean isPalindrome(int num) {
+        int reversedNum = 0;
+        int originalNum = num;
+
+        while (num > 0) {
+            int remainder = num % 10;
+            reversedNum = reversedNum * 10 + remainder;
+            num /= 10;
         }
-        
-        return true; // All characters matched, it's a palindrome
+
+        return originalNum == reversedNum;
     }
 
-    // Check if a string is a palindrome by comparing it with its reverse
-    static boolean isPalindromeSec(String str) {
-        String reverse = "";
-        
-        // Generate the reverse of the input string
-        for (int i = str.length() - 1; i >= 0; i--) {
-            reverse += str.charAt(i);
-        }
-
-        // Compare the original string with its reverse
-        if (str.equals(reverse))
-            return true; // It's a palindrome
-        else
-            return false; // Not a palindrome
+    // Checks if an integer is a palindrome (alternative approach using string comparison)
+    static boolean isPalindromeSec(int num) {
+        String str = String.valueOf(num);
+        String reverse = new StringBuilder(str).reverse().toString();
+        return str.equals(reverse);
     }
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome("madam"));
+        int number = 12321;
+        System.out.println("Is " + number + " a palindrome? " + isPalindrome(number));
     }
 }
